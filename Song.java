@@ -5,7 +5,10 @@
  */
 public class Song {
     //Fields-- what information do we want each Song to store?
-
+    public String artist;
+    public String name;
+    public double length;
+    public boolean liked;
 
 
 
@@ -14,7 +17,13 @@ public class Song {
      * How will you handle 'liked' songs? It makes sense for a Song not be 'liked' by default
      */
 
-
+    public Song(String artist, String name, double length)
+    {
+        this.artist = artist;
+        this.name = name;
+        this.length = length;
+        liked = false;
+    }
 
 
 
@@ -25,6 +34,29 @@ public class Song {
       * song easily as well!
       * What kind of mutator (setter) methods will you need?
       */
-
-
+    public String getName() 
+    {
+        return name;
+    }
+    public String getArtist() 
+    {
+        return artist;
+    }
+    public double getLength() 
+    {
+        return length;
+    }
+    public boolean getLiked()
+    {
+        return liked;
+    }
+    public void setLiked(boolean liked)
+    {
+        this.liked = liked;
+    }
+    public String to_String()
+    {
+        String songlenString = (length / 3600) + ":" + (length / 60) + ":" + (length % 60);
+        return name + " by " + artist + " (" + songlenString + ")";
+    }
 }
