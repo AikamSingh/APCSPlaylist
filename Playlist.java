@@ -38,6 +38,7 @@ public class Playlist {
     public void addSong(Song song)
     {
         songs.add(song);
+        System.out.println("Added "+ song);
     }
     public void likeSong(Song song)
     {
@@ -46,23 +47,26 @@ public class Playlist {
     public void removeSong(Song song)
     {
         songs.remove(song);
+        System.out.printf("Removed "+ song);
     }
     public String examineAllSongs() {
         String allSongs = "";
         for (Song song : songs) {
-            allSongs += song.to_String();
+            allSongs += song.toString();
+            allSongs += "\n";
         }
-        return allSongs;
+        return allSongs.strip();// I know this is lazy but its cleaner than if statements
 
     }
     public String examineLikedSongs() {
         String likedSongs = "";
         for (Song song : songs) {
             if (song.getLiked()) {
-                likedSongs += song.to_String();
+                likedSongs += song.toString();
+                likedSongs += "\n";
             }
         }
-        return likedSongs;
+        return likedSongs.strip();
     }
     /**
      * This method will return the total duration of all songs in the playlist in seconds
@@ -77,7 +81,10 @@ public class Playlist {
     }
     public String totalDurationFormatted() {
         double totalDuration = totalDurationSeconds();
-        return (totalDuration / 3600) + ":" + (totalDuration / 60) + ":" + (totalDuration % 60);
+        int hours = (int) totalDuration / 3600;
+        int minutes = (int) totalDuration / 60;
+        int seconds = (int) totalDuration % 60;
+        return String.format("%d:%02d:%02d", hours, minutes, seconds);// java will never be python
     }
     public void removeUnlikedSongs() {
         for (int i = 0; i < songs.size(); i++) {
