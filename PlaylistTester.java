@@ -72,6 +72,30 @@ public class PlaylistTester {
         //This should now look like only the liked songs list from before
         System.out.println(playlist.examineAllSongs());
         System.out.println("--------------------");
+
+
+        System.out.println("testing saving to a file");
+        playlist.saveToFile("playlist.txt");
+        System.out.println("playlist current state");
+        System.out.println(playlist.examineAllSongs());
+        //catastrphoe goes here (sister finds playlist)
+        System.out.println("\n\n\nsister finds playlist\n\n");
+        playlist.addSong(new Song("Never Gonna Give You Up", "Rick Astley", 250));
+        playlist.addSong(new Song("Never Gonna Let You Down", "Rick Astley", 250));
+        playlist.addSong(new Song("Never Gonna Run Around and Desert You", "Rick Astley", 250));
+        playlist.addSong(new Song("Never Gonna Make You Cry", "Rick Astley", 250));
+        playlist.addSong(new Song("Never Gonna Say Goodbye", "Rick Astley", 250));
+        System.out.println("playlist current state");
+        System.out.println(playlist.examineAllSongs());
+
+        System.out.println("loading from file");
+        playlist.loadFromFile("playlist.txt");
+        System.out.println("playlist current state");
+        System.out.println(playlist.examineAllSongs());
+        System.out.println("yay!");
+
+        System.out.println("testing playing song file");
         playlist.playFile("./assets/asd.wav");
+
     }
 }

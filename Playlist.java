@@ -1,5 +1,8 @@
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The Playlist class, which will keep track of a playlist of Song objects
@@ -36,20 +39,20 @@ public class Playlist {
     }
 
     /**
-     *
      * @param song the song to like
      */
     public void likeSong(Song song) {
         song.setLiked(true);
     }
+
     /**
-     *
      * @param song the song to remove
      */
     public void removeSong(Song song) {
         songs.remove(song);
         System.out.printf("Removed " + song);
     }
+
     /**
      * @return a string of all songs
      */
@@ -62,6 +65,7 @@ public class Playlist {
         return allSongs.strip();// I know this is lazy but its cleaner than if statements
 
     }
+
     /**
      * @return a string of all liked songs
      */
@@ -113,25 +117,87 @@ public class Playlist {
         }
     }
 
-
     /**
-     * @return the song object at index position
      * @param position the index of the song to return
+     * @return the song object at index position
      */
     public Song getSong(int position) {
         return songs.get(position);
     }
 
     /**
-     *  HIGHLY EXPERIMENTAL file player. Precurser to being able to play songs in the playlist by streaming from yt
+     * @return a csv of the entire playlist data
+     */
+    private String dumpData() {
+        String data = "";
+        for (Song song : songs) {
+            data += song.getArtist() + "," + song.getName() + "," + song.getLength() + "," + song.getLiked() + "\n";
+        }
+        return data.strip();
+    }
+
+    /**
+     * This method will save the playlist to a file
+     *
+     * @param filename the name of the file to save to
+     */
+    public void saveToFile(String filename) {
+        try {
+
+            java.io.FileWriter file = new java.io.FileWriter(filename);
+            file.write(dumpData());
+            file.close();
+            System.out.println("Successfully wrote to the file to " + new File(filename).getAbsolutePath());
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+    }
+    /**
+     * This method will read a csv file and add all songs to the playlist
+     * @param filepath the name of the file to read
+     */
+    public void loadFromFile(String filepath) {
+        try {
+            URL url = getClass().getResource(filepath);
+            File file = new File(url.toURI());
+            Scanner scanner = new Scanner(file);
+            songs = new ArrayList<Song>();
+
+            while (scanner.hasNextLine()) {
+                try{
+                String line = scanner.nextLine();
+                String[] data = line.split(",");
+                Song song = new Song(data[0], data[1], Double.parseDouble(data[2]), Boolean.parseBoolean(data[3]));
+                songs.add(song);
+                }
+                catch (Exception e){
+                    System.out.println("Playlist currupted! Go use spotify");
+                }
+
+            }
+
+            scanner.close();
+            System.out.println("Successfully loaded " + songs.size() + " songs from " + file.getAbsolutePath());
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * HIGHLY EXPERIMENTAL file player. Precurser to being able to play songs in the playlist by streaming from yt
+     *
      * @param filepath the path to the file to play
      */
     public void playFile(String filepath) {// experimental. need some way to download music form soundcloud/youtube first
         System.out.print("Playing music");
         try {
             //using fully qualified names so imports arent as ugly I know.. it looks bad but this is an experimental feature and not ment for production
-            java.net.URL url = getClass().getResource(filepath);
-            java.io.File file = new java.io.File(url.toURI());
+            URL url = getClass().getResource(filepath);
+            File file = new File(url.toURI());
 
             javax.sound.sampled.AudioInputStream audioInput = javax.sound.sampled.AudioSystem.getAudioInputStream(file);
             javax.sound.sampled.Clip clip = javax.sound.sampled.AudioSystem.getClip();

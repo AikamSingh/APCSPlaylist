@@ -24,7 +24,13 @@ public class Song {
         this.length = length;
         liked = false;
     }
-
+    public Song(String artist, String name, double length, boolean liked)
+    {
+        this.artist = artist;
+        this.name = name;
+        this.length = length;
+        this.liked = liked;
+    }
 
 
      /**
