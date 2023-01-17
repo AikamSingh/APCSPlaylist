@@ -56,7 +56,8 @@ public class Song {
     }
     public String to_String()
     {
-        String songlenString = (length / 3600) + ":" + (length / 60) + ":" + (length % 60);
+        //round the duration to 2 decimal places and convert from seconds to minutes and seconds
+        String songlenString = String.format("%.2f", length / 60) + " minutes";
         return name + " by " + artist + " (" + songlenString + ")";
     }
 }
