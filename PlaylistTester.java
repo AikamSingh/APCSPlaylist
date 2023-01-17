@@ -52,23 +52,26 @@ public class PlaylistTester {
         System.out.println("Printing the songs...\n");
         System.out.println(playlist.examineAllSongs());
 
+
         System.out.println("\nPrinting only the liked songs...\n");
         //Your Playlist should be able to do this without looping while in main!
         System.out.println(playlist.examineLikedSongs());
         System.out.println("--------------------");
-        System.out.println("expected: Hey Jude by The Beatles (0.06944444444444445:4.166666666666667:10.0)Let It Be by The Beatles (0.05555555555555555:3.3333333333333335:0.0)Yesterday by The Beatles (0.041666666666666664:2.5:0.0)");
 
 
 
         System.out.println("\nPrinting the total duration of all songs...\n");
         //Note that the format should look something like minutes:second
-        System.out.println(playlist.totalDuration());
+        System.out.println(playlist.totalDurationFormatted());
+        System.out.println("--------------------");
 
         System.out.println("\nRemoving all unliked songs from the playlist...\n");
         //This should be doable with a single method call
-
+        playlist.removeUnlikedSongs();
 
         System.out.println("Printing all songs...\n");
         //This should now look like only the liked songs list from before
+        System.out.println(playlist.examineAllSongs());
+        System.out.println("--------------------");
     }
 }
