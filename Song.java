@@ -1,7 +1,7 @@
 /**
  * File for a Song class to be used in the Playlist Project
- * @author
- * @version
+ * @author Aikam Jeremy Max
+ * @version 1/17/22
  */
 public class Song {
     //Fields-- what information do we want each Song to store?
@@ -38,22 +38,37 @@ public class Song {
     {
         return name;
     }
+    /**
+     * @return the artist
+     */
     public String getArtist() 
     {
         return artist;
     }
+    /**
+     * @return the length
+     */
     public double getLength() 
     {
         return length;
     }
+    /**
+     * @return the liked
+     */
     public boolean getLiked()
     {
         return liked;
     }
+    /**
+     * @param liked the liked to set
+     */
     public void setLiked(boolean liked)
     {
         this.liked = liked;
     }
+    /**
+     * @return a string of the song full title
+     */
     public String toString()
     {
         //round the duration to 2 decimal places and convert from seconds to minutes and seconds

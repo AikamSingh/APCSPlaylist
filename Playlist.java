@@ -1,7 +1,5 @@
 
 import java.util.ArrayList;
-// all the garbage needed to play a file
-
 
 /**
  * The Playlist class, which will keep track of a playlist of Song objects
@@ -37,15 +35,24 @@ public class Playlist {
         System.out.println("Added " + song);
     }
 
+    /**
+     *
+     * @param song the song to like
+     */
     public void likeSong(Song song) {
         song.setLiked(true);
     }
-
+    /**
+     *
+     * @param song the song to remove
+     */
     public void removeSong(Song song) {
         songs.remove(song);
         System.out.printf("Removed " + song);
     }
-
+    /**
+     * @return a string of all songs
+     */
     public String examineAllSongs() {
         String allSongs = "";
         for (Song song : songs) {
@@ -55,7 +62,9 @@ public class Playlist {
         return allSongs.strip();// I know this is lazy but its cleaner than if statements
 
     }
-
+    /**
+     * @return a string of all liked songs
+     */
     public String examineLikedSongs() {
         String likedSongs = "";
         for (Song song : songs) {
@@ -80,6 +89,11 @@ public class Playlist {
         return totalDuration;
     }
 
+    /**
+     * This method will return the total duration of all songs in the playlist in minutes
+     *
+     * @return duration in minutes
+     */
     public String totalDurationFormatted() {
         double totalDuration = totalDurationSeconds();
         int hours = (int) totalDuration / 3600;
@@ -88,6 +102,9 @@ public class Playlist {
         return String.format("%d:%02d:%02d", hours, minutes, seconds);// java will never be python
     }
 
+    /**
+     * This method will remove all unliked songs from the playlist
+     */
     public void removeUnlikedSongs() {
         for (int i = 0; i < songs.size(); i++) {
             if (!songs.get(i).getLiked()) {
@@ -96,10 +113,19 @@ public class Playlist {
         }
     }
 
+
+    /**
+     * @return the song object at index position
+     * @param position the index of the song to return
+     */
     public Song getSong(int position) {
         return songs.get(position);
     }
 
+    /**
+     *  HIGHLY EXPERIMENTAL file player. Precurser to being able to play songs in the playlist by streaming from yt
+     * @param filepath the path to the file to play
+     */
     public void playFile(String filepath) {// experimental. need some way to download music form soundcloud/youtube first
         System.out.print("Playing music");
         try {
