@@ -64,12 +64,20 @@ public class Playlist {
         }
         return likedSongs;
     }
-    public double totalDuration() {
+    /**
+     * This method will return the total duration of all songs in the playlist in seconds
+     * @return duration in seconds
+     */
+    public double totalDurationSeconds() {
         double totalDuration = 0;
         for (Song song : songs) {
             totalDuration += song.getLength();
         }
         return totalDuration;
+    }
+    public String totalDurationFormatted() {
+        double totalDuration = totalDurationSeconds();
+        return (totalDuration / 3600) + ":" + (totalDuration / 60) + ":" + (totalDuration % 60);
     }
     public void removeUnlikedSongs() {
         for (int i = 0; i < songs.size(); i++) {
@@ -77,5 +85,9 @@ public class Playlist {
                 songs.remove(i);
             }
         }
+    }
+
+    public Song getSong(int position) {
+        return songs.get(position);
     }
 }
