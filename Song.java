@@ -54,10 +54,13 @@ public class Song {
     {
         this.liked = liked;
     }
-    public String to_String()
+    public String toString()
     {
         //round the duration to 2 decimal places and convert from seconds to minutes and seconds
-        String songlenString = String.format("%.2f", length / 60) + " minutes";
-        return name + " by " + artist + " (" + songlenString + ")";
+        int minutes = (int) length / 60;
+        int seconds = (int) length % 60;
+        String duration = String.format("%d:%02d", minutes, seconds);
+
+        return name + " by " + artist + " (" + duration + ") " ;
     }
 }
