@@ -60,7 +60,8 @@ public class Song {
         int minutes = (int) length / 60;
         int seconds = (int) length % 60;
         String duration = String.format("%d:%02d", minutes, seconds);
+        String likedConcat = liked ? " -- liked" : "";
 
-        return name + " by " + artist + " (" + duration + ") " ;
+        return "\""+ name +"\"" + " by " + artist + " (" + duration + ")" + likedConcat;
     }
 }
