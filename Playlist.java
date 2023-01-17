@@ -155,11 +155,12 @@ public class Playlist {
 
     }
     /**
-     * This method will read a csv file and add all songs to the playlist
+     * This method will read a csv file and add all songs to the playlist. DESTRUCTIVE WILL CLEAR CURRENT PLAYLIST
      * @param filepath the name of the file to read
      */
     public void loadFromFile(String filepath) {
         try {
+            //We need to use an absolute filepath or else java attempts to get file from JVM execution directory
             URL url = getClass().getResource(filepath);
             File file = new File(url.toURI());
             Scanner scanner = new Scanner(file);
