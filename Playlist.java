@@ -205,6 +205,7 @@ public class Playlist {
             clip.open(audioInput);
             clip.start();
             javax.swing.JOptionPane.showMessageDialog(null, "Press OK to stop playing");// https://stackoverflow.com/questions/6870816/why-this-code-doesnt-play-the-sound-file apparenly we need to suspend currenty thread so deamon thread which plays music doesnt die so it can acutally play
+            //note this will stop working if you run in a headless server environment
         }
         catch (Exception e) {
             System.out.println("Unknown Error");
