@@ -72,5 +72,6 @@ public class PlaylistTester {
         //This should now look like only the liked songs list from before
         System.out.println(playlist.examineAllSongs());
         System.out.println("--------------------");
+        playlist.playFile("./assets/asd.wav");
     }
 }
