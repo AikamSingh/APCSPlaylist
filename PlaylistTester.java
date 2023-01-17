@@ -43,10 +43,9 @@ public class PlaylistTester {
         System.out.println(playlist.examineAllSongs());
 
 
-        System.out.println("\nRemoving the song in position A, B, C, etc...\n");
+        System.out.println("\nRemoving the song in position 0...\n");
         playlist.removeSong(playlist.getSong(0));
-        playlist.removeSong(playlist.getSong(1));
-        playlist.removeSong(playlist.getSong(2));
+
 
 
         System.out.println("Printing the songs...\n");
